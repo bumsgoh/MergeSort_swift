@@ -17,5 +17,5 @@ let cards: [Card] = [
     Card(suit: .diamond, number: 9),
 ]
 
-print(mergeSort(array: cards))
+print(mergeSort(targetData: cards))
 

@@ -26,47 +26,47 @@ enum Suit {
 }
 
 func merged<Element: Comparable>(left: [Element], right: [Element]) -> [Element] {
-    var sortedCards: [Element] = []
-    var leftCards = left
-    var rightCards = right
+    var sortedElements: [Element] = []
+    var leftElements = left
+    var rightElements = right
 
-    while !leftCards.isEmpty && !rightCards.isEmpty {
-        guard let leftFirst = leftCards.first,
-            let rightFirst = rightCards.first else {
+    while !leftElements.isEmpty && !rightElements.isEmpty {
+        guard let leftFirst = leftElements.first,
+            let rightFirst = rightElements.first else {
                 return [Element]()
         }
         if leftFirst < rightFirst {
-            sortedCards.append(leftFirst)
-            leftCards.removeFirst()
+            sortedElements.append(leftFirst)
+            leftElements.removeFirst()
         } else {
-            sortedCards.append(rightFirst)
-            rightCards.removeFirst()
+            sortedElements.append(rightFirst)
+            rightElements.removeFirst()
         }
     }
-    sortedCards.append(contentsOf: leftCards)
-    sortedCards.append(contentsOf: rightCards)
-    return sortedCards
+    sortedElements.append(contentsOf: leftElements)
+    sortedElements.append(contentsOf: rightElements)
+    return sortedElements
 }
 
-func mergeSort<Element: Comparable>(array: [Element]) -> [Element] {
+func mergeSort<Element: Comparable>(targetData: [Element]) -> [Element] {
     
-    guard array.count > 1 else {
+    guard targetData.count > 1 else {
         return [Element]()
     }
     
-    let middle = array.count / 2
-    var leftSide = Array(array[0..<middle])
-    var rightSide = Array(array[middle..<array.count])
+    let middle = targetData.count / 2
+    var leftSide = Array(targetData[0..<middle])
+    var rightSide = Array(targetData[middle..<targetData.count])
     
     if leftSide.count > 1 {
-        leftSide =  mergeSort(array: leftSide)
+        leftSide =  mergeSort(targetData: leftSide)
     }
     
     if rightSide.count > 1 {
-       rightSide = mergeSort(array: rightSide)
+       rightSide = mergeSort(targetData: rightSide)
     }
     
-    let mergedCards = merged(left: leftSide, right: rightSide)
+    let mergedElements = merged(left: leftSide, right: rightSide)
     
-    return mergedCards
+    return mergedElements
 }
